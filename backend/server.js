@@ -4,9 +4,12 @@ const path = require('path');
 const { randomUUID } = require('crypto');
 
 const port = Number(process.env.PORT || 3000);
+const host = process.env.HOST || '0.0.0.0';
 const projectRoot = path.resolve(__dirname, '..');
 const frontendRoot = path.join(projectRoot, 'frontend');
-const historyRoot = path.join(__dirname, 'data', 'history');
+const historyRoot = process.env.RAILWAY_VOLUME_MOUNT_PATH
+  ? path.resolve(process.env.RAILWAY_VOLUME_MOUNT_PATH)
+  : path.join(__dirname, 'data', 'history');
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -141,6 +144,10 @@ const handleApi = async (req, res, url) => {
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
+    if (url.pathname === '/health') {
+      sendJson(res, 200, { status: 'ok' });
+      return;
+    }
     if (url.pathname.startsWith('/api/')) {
       await handleApi(req, res, url);
       return;
@@ -161,7 +168,7 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(port, '127.0.0.1', () => {
+server.listen(port, host, () => {
   console.log(`Agenda disponível em http://localhost:${port}/`);
   console.log(`Históricos mensais em ${historyRoot}`);
 });
