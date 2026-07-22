@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="calendar-panel">
+      <header class="month-header">
+        <button id="prevMonth" class="nav-button" type="button" aria-label="Mês anterior">&lt;</button>
+        <h1><span id="monthName"></span> <span id="yearName" class="year-pill"></span></h1>
+        <button id="nextMonth" class="nav-button" type="button" aria-label="Próximo mês">&gt;</button>
+      </header>
+
+      <div class="calendar-body">
+        <section class="summary-grid" aria-label="Data selecionada">
+          <article><span>Data</span><strong id="summaryDay"></strong></article>
+          <article><span>Dia da semana</span><strong id="summaryWeekday"></strong></article>
+          <article><span>Mês</span><strong id="summaryMonth"></strong></article>
+          <article><span>Ano</span><strong id="summaryYear"></strong></article>
+        </section>
+
+        <div class="weekdays" aria-hidden="true">
+          <strong>Dom</strong><strong>Seg</strong><strong>Ter</strong><strong>Qua</strong>
+          <strong>Qui</strong><strong>Sex</strong><strong>Sáb</strong>
+        </div>
+        <div id="calendarDays" class="calendar-days" aria-label="Calendário"></div>
+
+        <section class="booking-form">
+          <h2>Horários disponíveis</h2>
+          <p>Escolha um horário entre 08:00 e 15:00. O horário é opcional.</p>
+          <div id="timeSlots" class="time-slots"></div>
+
+          <label class="reminder-field">
+            <span>Lembrete para esta marcação</span>
+            <textarea id="reminder" rows="4" placeholder="Escreva um lembrete para este horário"></textarea>
+          </label>
+
+          <button id="saveAppointment" class="primary-button" type="button">Próximo</button>
+        </section>
+      </div>
+    </section>
+
+    <aside class="details-panel">
+      <div class="details-card">
+        <h2>Detalhes do serviço</h2>
+        <p><strong>Data:</strong> <span id="detailDate"></span></p>
+        <p><strong>Horário:</strong> <span id="detailTime">-</span></p>
+        <p><strong>Lembrete:</strong> <span id="detailReminder">Sem lembrete</span></p>
+
+        <section class="history-card">
+          <h3>Histórico de agendamentos</h3>
+          <ul id="historyList"></ul>
+        </section>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
