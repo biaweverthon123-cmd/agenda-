@@ -114,7 +114,13 @@ function renderHistory() {
 
   sorted.forEach(appointment => {
     const item = document.createElement('li');
+    const created = document.createElement('strong');
+    const description = document.createElement('span');
     const actions = document.createElement('div');
+    created.className = 'history-date';
+    created.textContent = `Criado: ${formatLongDate(new Date(`${appointment.date}T12:00:00`))}`;
+    description.className = 'history-description';
+    description.textContent = [appointment.time, appointment.reminder].filter(Boolean).join(' - ') || 'Sem lembrete';
     actions.className = 'history-actions';
     const edit = document.createElement('button');
     edit.type = 'button';
@@ -139,7 +145,7 @@ function renderHistory() {
       } catch (error) { alert(error.message); }
     });
     actions.append(edit, remove);
-    item.append(actions, document.createTextNode(`${formatLongDate(new Date(`${appointment.date}T12:00:00`))} — ${appointment.time || 'Sem horário'}${appointment.reminder ? ` — ${appointment.reminder}` : ''}`));
+    item.append(created, description, actions);
     elements.history.appendChild(item);
   });
 }

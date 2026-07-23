@@ -95,10 +95,23 @@ button { cursor: pointer; }
 .history-card { margin-top: auto; padding: 17px; border: 1px solid #d9e2ef; border-radius: 16px; background: #f8fafc; }
 .history-card h3 { margin: 0 0 10px; font-size: 17px; }
 .history-card ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.history-card li { padding: 11px 13px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; font-size: 14px; line-height: 1.4; }
-.history-actions { display: flex; float: right; gap: 8px; margin-left: 10px; }
-.history-card li button { border: 0; color: #b91c1c; background: transparent; font-weight: 700; }
-.history-card li .edit-button { color: #1d4ed8; }
+.history-card li { padding: 14px; border: 1px solid #cbd5e1; border-radius: 14px; background: #fff; font-size: 14px; line-height: 1.4; }
+.history-date { display: block; margin-bottom: 2px; font-size: 15px; }
+.history-description { display: block; color: #334155; overflow-wrap: anywhere; }
+.history-actions { display: flex; gap: 8px; margin-top: 11px; }
+.history-card li button {
+  flex: 1;
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 1px solid #b91c1c;
+  border-radius: 10px;
+  color: #b91c1c;
+  background: #fff;
+  font-weight: 700;
+}
+.history-card li button:hover { background: #fef2f2; }
+.history-card li .edit-button { border-color: #2563eb; color: #1d4ed8; }
+.history-card li .edit-button:hover { background: #eff6ff; }
 
 @media (max-width: 900px) {
   .app-shell { grid-template-columns: 1fr; margin: 0 auto; border-radius: 0; }
